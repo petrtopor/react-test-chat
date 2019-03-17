@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import InputFoo from './InputFoo'
+import InputBar from './InputBar'
+
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      textFoo: '',
+      textBar: ''
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,6 +22,8 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          <InputFoo value={ this.state.textFoo } onChange={e => this.setState({ textFoo: e.target.value })}/>
+          <InputBar value={ this.state.textBar } onChange={e => this.setState({ textBar: e.target.value })}/>
           <a
             className="App-link"
             href="https://reactjs.org"
