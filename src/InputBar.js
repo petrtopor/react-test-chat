@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './InputBar.scss';
+// import './InputBar.scss';
 
 const InputBar = props =>
-  <div id="container">
+  <div className="inputContainer">
     <input placeholder="barbar" value={props.value} onChange={props.onChange}/>
   </div>
 
