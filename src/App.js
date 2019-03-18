@@ -52,7 +52,27 @@ class App extends Component {
     }
   }
 
-  handleCurrentMessageTextChange = text => console.log('input changed: ', text)
+  handleCurrentMessageFromChange = e => this.setState({
+    currentMessage: {
+      from: e.currentTarget.value,
+      to: this.state.currentMessage.to,
+      text: this.state.currentMessage.text
+    }
+  })
+  handleCurrentMessageToChange = e => this.setState({
+    currentMessage: {
+      from: this.state.currentMessage.from,
+      to: e.currentTarget.value,
+      text: this.state.currentMessage.text
+    }
+  })
+  handleCurrentMessageTextChange = e => this.setState({
+    currentMessage: {
+      from: this.state.currentMessage.from,
+      to: this.state.currentMessage.to,
+      text: e.currentTarget.value
+    }
+  })
 
   render() {
     const messages = this.state.messages.map(message =>
@@ -67,16 +87,16 @@ class App extends Component {
           <div className="messageInput">
             <div className="inputFields">
               <div className="inputField">
-                <input type="text" onChange={this.handleCurrentMessageTextChange}/>
+                <input type="text" onChange={this.handleCurrentMessageFromChange}/>
               </div>
               <div className="inputField">
-                <input type="text"/>
+                <input type="text" onChange={this.handleCurrentMessageToChange}/>
               </div>
               <div className="inputField">
-                <input type="text"/>
+              <input type="text" onChange={this.handleCurrentMessageTextChange}/>
               </div>
             </div>
-            <div className="submitButton">
+            <div className="submitButton" onClick={() => this.setState({messages: [this.state.currentMessage, ...this.state.messages]})}>
               <span>
                 Send
               </span>
